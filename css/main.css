@@ -1,0 +1,267 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: beige;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+/* Colores por defecto (Modo Claro) */
+:root {
+--bg-color: beige;
+--text-color: #1a1a1a;
+}
+
+/* Colores para el Modo Oscuro */
+body.dark-mode {
+--bg-color: #121212; 
+--text-color: #f5f5f5;
+}
+
+/* Aplicación de las variables */
+body {
+background: var(--bg-color);
+color: var(--text-color);
+font-family: system-ui, sans-serif;
+transition: background 1.3s ease, color 0.3s ease; /* Transición suave */
+padding-left: 0; /* Quitamos el padding izquierdo para que el banner del avión ocupe todo */
+padding-right: 0;
+}
+
+/* -------------MODO OSCURO-------------------- */
+.modo_oscuro {
+    border: 10px gray solid;
+    border-radius: 50px;
+    width: 80px;
+    height: 50px;
+    padding: 1px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.boton{
+    border-radius: 50px;
+    transition: transform 0.4s ease;
+    width: 30px;
+    height: 30px;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.activo {
+    transform: translateX(26px);
+}
+/* ---------------------------------------- */
+
+/* Sección principal con imagen de fondo del avión que abarca todo el ancho */
+.presentacion {
+    position: relative;
+    height: 75vh;
+    background-image: url('../imagenes/avion.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Ocupa todo el ancho de la pantalla rompiendo los márgenes */
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    margin-top: -40px; /* Compensar el padding del body superior */
+    margin-bottom: 40px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Capa oscura semitransparente sobre el avión */
+.presentacion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Barra de navegación superior */
+.navbar {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    width: 100%;
+}
+
+.logo-text {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+/* Lados de la barra para acomodar modo oscuro a la izquierda y Sign Up a la derecha */
+.nav-actions-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-actions-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo del botón "Sign Up" */
+.btn-signup {
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-signup:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+}
+
+/* Título central "Turismo" */
+.presentacion-contenido {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin: auto;
+}
+
+.presentacion h1 {
+    color: #ffffff;
+    font-size: 3.5rem;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Sección de explicación */
+.exp{
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.exp h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.exp p{
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+
+/* =======================BANDERAS=========================== */
+/* Contenedor principal en cuadrícula 2x2 */
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Tarjeta individual */
+.country-card {
+  padding: 40px 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Eliminar borde derecho en la columna de la derecha (tarjetas pares) */
+.country-card:nth-child(2n) {
+  border-right: none;
+}
+
+/* Eliminar borde inferior en la última fila (últimas 2 tarjetas) */
+.country-card:nth-child(n + 3) {
+  border-bottom: none;
+}
+
+/* Enlace circular para la bandera */
+.flag-link {
+  display: inline-block;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.flag-link:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen de la bandera recortada al círculo */
+.flag-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tipografía de títulos */
+.country-card h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #555555;
+  margin: 0 0 16px 0;
+}
+
+/* Tipografía de los párrafos */
+.country-card p {
+  font-size: 0.95rem;
+  color: #888888;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Adaptación responsive para pantallas pequeñas */
+@media (max-width: 600px) {
+  .countries-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .country-card {
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .country-card:last-child {
+    border-bottom: none;
+  }
+}
+/* ========================================================== */
